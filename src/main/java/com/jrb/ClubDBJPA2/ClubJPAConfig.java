@@ -60,4 +60,10 @@ public class ClubJPAConfig {
 		MemberDaoImpl dao = new MemberDaoImpl();
 		return dao;
 	}
+	
+	@Bean
+	public PurchaseDaoImpl purchaseDao() {
+		PurchaseDaoImpl dao = new PurchaseDaoImpl();
+		return dao;
+	}
 }
