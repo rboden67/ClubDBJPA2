@@ -57,7 +57,7 @@ public class Member {
 	@Transient
 	private long passwordatt;
 
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "memid")
 	@Cascade(CascadeType.ALL)
 	private List<Purchase> purchases;
