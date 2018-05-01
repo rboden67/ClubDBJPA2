@@ -44,26 +44,35 @@ public class Main {
 		dao.save(newMember);
 		System.out.println("New Member Saved");
 
-		Purchase newPurchase = new Purchase();
-		newPurchase.seteMemid("A123");
-		newPurchase.setPurchdt(new Date());
-		newPurchase.setTranstype("D");
-		newPurchase.setTranscd("21");
-		newPurchase.setAmt(55.00);
-		purchaseDao.save(newPurchase);
-		System.out.println("New Purchase Recorded");
+		Purchase p = new Purchase();
+		p.seteMemid("A123");
+		p.setPurchdt(new Date());
+		p.setTranstype("D");
+		p.setTranscd("01");
+		p.setAmt(100.00);
+		purchaseDao.save(p);
+		System.out.println("Member Dues Recorded");
 
-		Purchase secondPurchase = new Purchase();
-		secondPurchase.seteMemid("A123");
-		secondPurchase.setPurchdt(new Date());
-		secondPurchase.setTranstype("D");
-		secondPurchase.setTranscd("22");
-		secondPurchase.setAmt(25.00);
-		purchaseDao.save(secondPurchase);
-		System.out.println("A Second Purchase Recorded");
+		Purchase p2 = new Purchase();
+		p2.seteMemid("A123");
+		p2.setPurchdt(new Date());
+		p2.setTranstype("D");
+		p2.setTranscd("21");
+		p2.setAmt(55.00);
+		purchaseDao.save(p2);
+		System.out.println("Food Purchase Recorded");
+
+		Purchase p3 = new Purchase();
+		p3.seteMemid("A123");
+		p3.setPurchdt(new Date());
+		p3.setTranstype("D");
+		p3.setTranscd("22");
+		p3.setAmt(25.00);
+		purchaseDao.save(p3);
+		System.out.println("Drink Purchase Recorded");
 
 		Member m = members.get(0);
-		System.out.println("\n Changing status of " + m.getMemid() + " " + m.getStatus());
+		System.out.println("\nChanging status of " + m.getMemid() + " " + m.getStatus());
 		m.setStatus("T");
 		dao.update(m);
 		System.out.println("change complete");
