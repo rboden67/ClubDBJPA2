@@ -51,6 +51,7 @@ public class Main
 		newPurchase.seteMemid("A123");
 		newPurchase.setPurchdt(new Date());
 		newPurchase.setTranstype("D");
+		newPurchase.setTranscd("TK");
 		purchaseDao.save(newPurchase);
 		System.out.println("New Purchase Recorded");
 		
@@ -59,6 +60,7 @@ public class Main
 		secondPurchase.seteMemid("A123");
 		secondPurchase.setPurchdt(new Date());
 		secondPurchase.setTranstype("D");
+		newPurchase.setTranscd("TK");
 		purchaseDao.save(secondPurchase);
 		System.out.println("A Secibd Purchase Recorded");
 

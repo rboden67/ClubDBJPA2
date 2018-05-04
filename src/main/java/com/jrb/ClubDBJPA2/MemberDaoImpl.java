@@ -26,19 +26,24 @@ public class MemberDaoImpl implements MemberDao {
 	public void update(Member m) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		EntityTransaction trans = entityManager.getTransaction();
-		
+
 		trans.begin();
 		entityManager.merge(m);
 		trans.commit();
 		entityManager.close();
 	}
-	
+
 	public void save(Member m) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		EntityTransaction trans = entityManager.getTransaction();
-		
+
 		trans.begin();
-		entityManager.persist(m);
+		try {
+			entityManager.persist(m);
+
+		} catch (Exception e) {
+			throw new DaoFailedException("Cannot insert member");
+		}
 		trans.commit();
 		entityManager.close();
 	}

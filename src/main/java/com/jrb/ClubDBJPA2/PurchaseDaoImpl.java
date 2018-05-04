@@ -15,7 +15,11 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		EntityTransaction trans = entityManager.getTransaction();
 
 		trans.begin();
+		try{
 		entityManager.persist(p);
+		} catch (Exception e) {
+			throw new DaoFailedException("Cannot insert member");
+		}
 		trans.commit();
 		entityManager.close();
 	}
