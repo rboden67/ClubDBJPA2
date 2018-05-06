@@ -1,4 +1,4 @@
-package com.jrb.ClubDBJPA2;
+package com.jrb;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,56 +33,36 @@ public class ClubJPAConfig {
 		dataSource.setPassword("testing123");
 		return dataSource;
 	}
-
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-		factoryBean.setDataSource(dataSource());
-		factoryBean.setPackagesToScan("com.jrb.ClubDBJPA");
-		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-		factoryBean.setJpaPropertyMap(jpaProperties());
-		return factoryBean;
-	}
-
-	@Bean 
-	public JpaVendorAdapter jpaVendorAdapter() { 
-		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-		jpaVendorAdapter.setGenerateDdl( true);
-		jpaVendorAdapter.setDatabase( Database.MYSQL); 
-		return jpaVendorAdapter;
-	}
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean factoryBean = 
+            new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setPersistenceProviderClass(HibernatePersistence.class);
+        factoryBean.setDataSource(dataSource());
+        factoryBean.setPackagesToScan("com.jrb");
+        factoryBean.setJpaPropertyMap(jpaProperties());
+        return factoryBean;
+    }
 
 	private Map<String, ?> jpaProperties() {
 		Map<String, String> jpaPropertiesMap = new HashMap<String, String>();
 		jpaPropertiesMap.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        jpaPropertiesMap.put("show_sql", "true");
+        jpaPropertiesMap.put("format_sql", "true");
+        jpaPropertiesMap.put("use_sql_comments", "true");
         //jpaPropertiesMap.put("hibernate.hbm2ddl.auto", "update");
 		return jpaPropertiesMap;
 	}
 	
 	@Bean
-	@Autowired
-	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(entityManagerFactory);
-		return transactionManager;
-	}
-
-	@Bean
-	public MemberDao memberDao() {
+	public MemberDaoImpl memberDao() {
 		MemberDaoImpl dao = new MemberDaoImpl();
 		return dao;
 	}
 
 	@Bean
-	public PurchaseDao purchaseDao() {
+	public PurchaseDaoImpl purchaseDao() {
 		PurchaseDaoImpl dao = new PurchaseDaoImpl();
 		return dao;
 	}
-
-	@Bean
-	public static PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor() {
-		PersistenceExceptionTranslationPostProcessor bean = new PersistenceExceptionTranslationPostProcessor();
-		return bean;
-	}
-
 }

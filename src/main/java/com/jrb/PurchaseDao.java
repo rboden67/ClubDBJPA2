@@ -1,4 +1,4 @@
-package com.jrb.ClubDBJPA2;
+package com.jrb;
 
 import java.util.List;
 

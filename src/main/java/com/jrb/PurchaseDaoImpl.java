@@ -1,4 +1,4 @@
-package com.jrb.ClubDBJPA2;
+package com.jrb;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

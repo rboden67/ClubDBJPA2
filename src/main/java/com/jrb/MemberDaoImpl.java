@@ -1,4 +1,4 @@
-package com.jrb.ClubDBJPA2;
+package com.jrb;
 
 import java.util.List;
 
@@ -8,10 +8,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
-import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Repository;
-
-@Repository
 public class MemberDaoImpl implements MemberDao {
 
 	@PersistenceUnit
