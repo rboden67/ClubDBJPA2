@@ -18,11 +18,12 @@ import com.jrb.ClubDBJPA2.ClubJPAConfig;
  */
 public class Main {
 	public static void main(String[] args) {
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ClubJPAConfig.class);
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(
+				ClubJPAConfig.class);
 
-		MemberDaoImpl dao = applicationContext.getBean(MemberDaoImpl.class);
+		MemberDao dao = applicationContext.getBean(MemberDao.class);
 
-		PurchaseDaoImpl purchaseDao = applicationContext.getBean(PurchaseDaoImpl.class);
+		PurchaseDao purchaseDao = applicationContext.getBean(PurchaseDao.class);
 
 		List<Member> members = dao.getMembers();
 
@@ -76,6 +77,7 @@ public class Main {
 		m.setStatus("T");
 		dao.update(m);
 		System.out.println("change complete");
-
+		
+		applicationContext.close();
 	}
 }

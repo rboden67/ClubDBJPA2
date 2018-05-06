@@ -38,8 +38,9 @@ public class ClubJPAConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(dataSource());
-		factoryBean.setPackagesToScan("com.jrb.ClubDBJPA2");
-		factoryBean.setJpaVendorAdapter( jpaVendorAdapter());
+		factoryBean.setPackagesToScan("com.jrb.ClubDBJPA");
+		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+		factoryBean.setJpaPropertyMap(jpaProperties());
 		return factoryBean;
 	}
 
@@ -51,6 +52,13 @@ public class ClubJPAConfig {
 		return jpaVendorAdapter;
 	}
 
+	private Map<String, ?> jpaProperties() {
+		Map<String, String> jpaPropertiesMap = new HashMap<String, String>();
+		jpaPropertiesMap.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        //jpaPropertiesMap.put("hibernate.hbm2ddl.auto", "update");
+		return jpaPropertiesMap;
+	}
+	
 	@Bean
 	@Autowired
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
@@ -60,13 +68,13 @@ public class ClubJPAConfig {
 	}
 
 	@Bean
-	public MemberDaoImpl memberDao() {
+	public MemberDao memberDao() {
 		MemberDaoImpl dao = new MemberDaoImpl();
 		return dao;
 	}
 
 	@Bean
-	public PurchaseDaoImpl purchaseDao() {
+	public PurchaseDao purchaseDao() {
 		PurchaseDaoImpl dao = new PurchaseDaoImpl();
 		return dao;
 	}
