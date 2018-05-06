@@ -44,7 +44,7 @@ public class ClubJPAConfig {
 	}
 
 	@Bean 
-	private JpaVendorAdapter jpaVendorAdapter() { 
+	public JpaVendorAdapter jpaVendorAdapter() { 
 		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
 		jpaVendorAdapter.setGenerateDdl( true);
 		jpaVendorAdapter.setDatabase( Database.MYSQL); 
