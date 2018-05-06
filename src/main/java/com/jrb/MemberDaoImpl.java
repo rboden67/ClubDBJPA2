@@ -8,6 +8,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
+import org.springframework.dao.DataAccessException;
+
 public class MemberDaoImpl implements MemberDao {
 
 	@PersistenceUnit
@@ -39,13 +41,15 @@ public class MemberDaoImpl implements MemberDao {
 
 	public void save(Member m) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		//EntityTransaction trans = entityManager.getTransaction();
+		EntityTransaction trans = entityManager.getTransaction();
 
-		//try {
+		try {
+			trans.begin();
 			entityManager.persist(m);
-		//} catch (DataAccessException e) {
-		//	System.out.println(e);
-		//}
+			trans.commit();
+		} catch (DataAccessException e) {
+			System.out.println(e);
+		}
 		entityManager.close();
 	}
 }

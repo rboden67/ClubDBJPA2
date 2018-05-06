@@ -5,7 +5,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnit;
 
-import org.springframework.dao.DataAccessException;
 
 public class PurchaseDaoImpl implements PurchaseDao {
 
@@ -17,7 +16,9 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		EntityTransaction trans = entityManager.getTransaction();
 
 		try {
+			trans.begin();
 			entityManager.persist(p);
+			trans.commit();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
