@@ -16,10 +16,8 @@ public class PurchaseDaoImpl implements PurchaseDao {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		EntityTransaction trans = entityManager.getTransaction();
 
-		trans.begin();
 		try {
 			entityManager.persist(p);
-			trans.commit();
 		} catch (Exception e) {
 			System.out.println(e);
 		}

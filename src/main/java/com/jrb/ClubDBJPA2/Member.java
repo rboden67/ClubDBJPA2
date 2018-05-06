@@ -44,6 +44,10 @@ public class Member {
 	@Temporal(TemporalType.DATE)
 	private Date memdt;
 
+	@Column(name = "ExpDt")
+	@Temporal(TemporalType.DATE)
+	private Date expdt;
+
 	@Column(name = "YTD_Total_Dt")
 	@Temporal(TemporalType.DATE)
 	private Date ytdtotdt;
@@ -69,6 +73,7 @@ public class Member {
 		this.middlename = "";
 		this.status = "";
 		this.memdt = null;
+		this.expdt = null;
 		this.ytdtotdt = null;
 		this.ytdtot = 0;
 		this.password = -1;
@@ -125,6 +130,18 @@ public class Member {
 
 	public String getMemdtS() {
 		return new SimpleDateFormat("MM-dd-yyyy").format(this.memdt);
+	}
+
+	public Date getExpdt() {
+		return expdt;
+	}
+
+	public void setExpdt(Date expdt) {
+		this.expdt = expdt;
+	}
+
+	public String getExpdtS() {
+		return new SimpleDateFormat("MM-dd-yyyy").format(this.expdt);
 	}
 
 	public Date getYtdtotdt() {
